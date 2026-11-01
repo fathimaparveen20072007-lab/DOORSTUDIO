@@ -1,204 +1,89 @@
+/* PAGE NAVIGATION */
 
+function showPage(pageId, clickedLink) {
 
-/* =================================
-   CINEMATIC INTRO
-================================= */
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
 
-const intro = document.getElementById("intro");
-const door = document.getElementById("openingDoor");
-const skip = document.getElementById("skipIntro");
+    document.getElementById(pageId).classList.add('active');
 
-let introDone = false;
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.remove('active');
+    });
 
-function openDoor() {
-
-    if (introDone) return;
-
-    introDone = true;
-
-    door.classList.add("open");
-
-    setTimeout(() => {
-        intro.classList.add("hide");
-        document.body.style.overflow = "auto";
-    }, 1900);
-
-}
-
-document.body.style.overflow = "hidden";
-
-setTimeout(openDoor, 1100);
-
-skip.addEventListener("click", openDoor);
-
-/* =================================
-   PAGE NAVIGATION
-================================= */
-
-const pages = document.querySelectorAll(".page");
-const navButtons = document.querySelectorAll("[data-page]");
-const navLinks = document.getElementById("navLinks");
-
-function showPage(pageName) {
-
-    const target = document.getElementById(pageName);
-
-    if (!target) return;
-
-    const current = document.querySelector(".page.active");
-
-    if (current === target) return;
-
-    if (current) {
-        current.classList.add("leaving");
-
-        setTimeout(() => {
-
-            current.classList.remove("active", "leaving");
-
-            target.classList.add("active");
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-            observeElements();
-
-        }, 220);
-
+    if (clickedLink) {
+        clickedLink.classList.add('active');
     } else {
-        target.classList.add("active");
-        observeElements();
+        const matchingLink = [...document.querySelectorAll('.nav-links a')]
+            .find(link => link.textContent.trim().toLowerCase() === pageId);
+
+        if (matchingLink) {
+            matchingLink.classList.add('active');
+        }
     }
 
-    navButtons.forEach(button => {
+    document.getElementById('navLinks').classList.remove('show');
 
-        button.classList.toggle(
-            "active",
-            button.dataset.page === pageName
-        );
-
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
     });
 
-    navLinks.classList.remove("show");
-
+    revealElements();
 }
 
-/* Navigation click events */
+/* MOBILE MENU */
 
-document.querySelectorAll("[data-page], [data-go]").forEach(button => {
-
-    button.addEventListener("click", event => {
-
-        event.preventDefault();
-
-        const pageName =
-            button.dataset.page || button.dataset.go;
-
-        showPage(pageName);
-
-    });
-
-});
-
-/* Mobile menu */
-
-document.getElementById("menuBtn")
-.addEventListener("click", () => {
-
-    navLinks.classList.toggle("show");
-
-});
-
-/* =================================
-   SCROLL ANIMATIONS
-================================= */
-
-let observer;
-
-function observeElements() {
-
-    if (observer) observer.disconnect();
-
-    observer = new IntersectionObserver(entries => {
-
-        entries.forEach(entry => {
-
-            if (entry.isIntersecting) {
-
-                entry.target.classList.add("visible");
-
-                observer.unobserve(entry.target);
-
-            }
-
-        });
-
-    }, {
-        threshold: 0.12
-    });
-
-    document.querySelectorAll(
-        ".page.active .reveal:not(.visible)"
-    ).forEach(element => {
-
-        observer.observe(element);
-
-    });
-
+function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('show');
 }
 
-observeElements();
+/* SCROLL REVEAL */
 
-/* =================================
-   CONTACT FORM
-================================= */
+function revealElements() {
 
-document.getElementById("contactForm")
-.addEventListener("submit", event => {
+    const elements = document.querySelectorAll('.page.active .reveal');
+
+    elements.forEach(element => {
+        const position = element.getBoundingClientRect().top;
+
+        if (position < window.innerHeight - 80) {
+            element.classList.add('visible');
+        }
+    });
+}
+
+window.addEventListener('scroll', revealElements);
+window.addEventListener('load', revealElements);
+
+/* CONTACT FORM */
+
+function sendMessage(event) {
 
     event.preventDefault();
 
-    const name =
-        document.getElementById("name").value;
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
 
-    const phone =
-        document.getElementById("phone").value;
+    const businessEmail = "hello@doorstudio.in";
 
-    const email =
-        document.getElementById("email").value;
+    const body =
+        "Name: " + name +
+        "\nEmail: " + email +
+        "\n\nMessage:\n" + message;
 
-    const interest =
-        document.getElementById("interest").value;
+    const mailtoLink =
+        "mailto:" + businessEmail +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
 
-    const message =
-        document.getElementById("message").value;
+    window.location.href = mailtoLink;
+}
 
-    const subject = encodeURIComponent(
-        "DoorStudio Enquiry - " + interest
-    );
+/* FOOTER YEAR */
 
-    const body = encodeURIComponent(
-        `Name: ${name}\n` +
-        `Phone: ${phone}\n` +
-        `Email: ${email}\n` +
-        `Interest: ${interest}\n\n` +
-        `Message: ${message}`
-    );
-
-    document.getElementById("status").textContent =
-        "Opening your email application...";
-
-    window.location.href =
-        `mailto:hello@doorstudio.in?subject=${subject}&body=${body}`;
-
-});
-
-/* =================================
-   FOOTER YEAR
-================================= */
-
-document.getElementById("year").textContent =
-    new Date().getFullYear();
+document.getElementById('year').textContent = new Date().getFullYear();
 
