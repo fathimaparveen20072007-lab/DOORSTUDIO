@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#241710">
+<title>Collections | Door Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="/collections.css">
+
+</head>
+
+<body>
+<!-- HEADER: kept consistent with index.html -->
+<header id="header">
+  <a href="/index.html" class="logo">DOOR <span>STUDIO.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/index.html">HOME</a></li>
+    <li><a href="/collections.html" class="active">COLLECTIONS</a></li>
+    <li><a href="/about.html">ABOUT</a></li>
+    <li><a href="/contact.html">CONTACT</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="inquiry-btn" type="button" onclick="openInquiry()">INQUIRY (<span id="inquiryCount">0</span>)</button>
+    <button class="menu-btn" type="button" onclick="toggleMenu()" aria-label="Open navigation" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="collection-hero">
+    <div class="hero-content">
+      <div class="eyebrow">THE ART OF DETAIL</div>
+      <h1>Explore Our<br><span>Collections.</span></h1>
+      <p>Discover thoughtfully selected doors, premium hardware and elegant fittings. Find the details that bring character and a sense of completeness to every space.</p>
+    </div>
+    <div class="hero-note">Designed to complement your space.</div>
+  </section>
+
+  <section class="collection-intro">
+    <div>
+      <div class="section-label">A CLOSER LOOK</div>
+      <h2 class="section-title">The right detail makes all the difference.</h2>
+      <div class="intro-rule"></div>
+    </div>
+    <p class="section-desc">Explore our selection of doors and essential fittings, from timeless finishes to contemporary designs. Browse by category, search for a product or save your favourites as you go.</p>
+  </section>
+
+  <section class="products-section" id="all-products">
+    <div class="collection-toolbar">
+      <div class="category-filters" aria-label="Filter products by category">
+        <button class="filter-btn active" data-category="all">All Products</button>
+        <button class="filter-btn" data-category="doors">Doors</button>
+        <button class="filter-btn" data-category="locks">Locks</button>
+        <button class="filter-btn" data-category="hinges">Hinges</button>
+        <button class="filter-btn" data-category="handles">Handles</button>
+      </div>
+      <div class="product-actions">
+        <label class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" id="productSearch" placeholder="Search products..." aria-label="Search products">
+        </label>
+        <button class="wishlist-filter" id="wishlistFilter" type="button">
+          <i class="fa-regular fa-heart"></i> Wishlist <span id="wishlistCount">0</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+    <div class="empty-state" id="emptyState">
+      <i class="fa-solid fa-box-open"></i>
+      <h3>No products found</h3>
+      <p>Try another search or explore a different category.</p>
+    </div>
+  </section>
+
+  <section class="collection-cta">
+    <div class="section-label">LET'S FIND THE RIGHT FIT</div>
+    <h2>Have something <span>specific in mind?</span></h2>
+    <p>Tell us what you are looking for. Add products to your enquiry or speak with our team for help choosing the right details for your space.</p>
+    <a href="contact.html" class="primary-btn">TALK TO OUR TEAM <i class="fa-solid fa-arrow-right" style="margin-left:9px"></i></a>
+  </section>
+</main>
+
+<!-- FOOTER: same structure and visual styling as index.html -->
+<footer>
+  <div>
+    <a href="index.html" class="logo">DOOR <span>STUDIO.</span></a>
+    <p>Thoughtful hardware. Beautiful spaces.</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="collections.html">Collections</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p>© 2026 Door Studio. All rights reserved.</p>
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeInquiry()"></div>
+<aside class="inquiry-panel" id="inquiryPanel" aria-label="Product enquiry basket" aria-hidden="true">
+  <div class="panel-top">
+    <h3>Your Enquiry</h3>
+    <button class="close-panel" type="button" onclick="closeInquiry()" aria-label="Close enquiry panel">×</button>
+  </div>
+  <div class="inquiry-list" id="inquiryList">
+    <p style="color:#88796b;font-size:13px;margin-top:20px">Your selected products will appear here.</p>
+  </div>
+  <button class="panel-action" type="button" onclick="sendInquiry()">SEND PRODUCT ENQUIRY →</button>
+</aside>
+
+<script src="collections.js"></script>
+</body>
+</html>

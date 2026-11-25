@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#241710">
+<title>Contact | Door Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="/contact.css">
+</head>
+<body>
+
+<!-- HEADER: deliberately mirrors index.html -->
+<header id="header">
+  <a href="index.html" class="logo">DOOR <span>STUDIO.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="collections.html">COLLECTIONS</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+    <li><a href="contact.html" class="active">CONTACT</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="inquiry-btn" onclick="openInquiry()">INQUIRY (<span id="inquiryCount">0</span>)</button>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Open navigation" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+<section class="contact-header">
+  <div class="contact-header-content">
+    <div class="eyebrow">WE WOULD LOVE TO HEAR FROM YOU</div>
+    <h1>Let's Start a <span>Conversation.</span></h1>
+    <p>Have a question, a project in mind, or looking for the perfect finishing touch? We are here to help you find it.</p>
+    <div class="header-line"></div>
+    <div class="breadcrumb"><a href="index.html">HOME</a><i class="fa-solid fa-chevron-right"></i><span>CONTACT</span></div>
+  </div>
+</section>
+
+<section class="contact-intro reveal">
+  <div class="intro-heading">
+    <span class="section-label">GET IN TOUCH</span>
+    <h2>Every great space begins with a <span>conversation.</span></h2>
+  </div>
+  <p>Whether you need product information, assistance choosing the right hardware, or want to discuss your next project, send us a message. We will be happy to assist.</p>
+</section>
+
+<section class="contact-section">
+  <div class="contact-container">
+    <div class="contact-information reveal">
+      <span class="section-label">CONTACT INFORMATION</span>
+      <h2>Let's connect and create something beautiful.</h2>
+      <p class="information-description">Reach out to our team for product enquiries, availability, recommendations and assistance.</p>
+      <div class="information-list">
+        <div class="information-item"><div class="information-icon"><i class="fa-solid fa-phone"></i></div><div><h4>Call Us</h4><p>+91 7867920789</p><span>For product enquiries</span></div></div>
+        <div class="information-item"><div class="information-icon"><i class="fa-solid fa-envelope"></i></div><div><h4>Email Us</h4><p>hello@doorstudio.com</p><span>Send us your questions anytime</span></div></div>
+        <div class="information-item"><div class="information-icon"><i class="fa-solid fa-location-dot"></i></div><div><h4>Visit Us</h4><p>Tamil Nadu, India</p><span>We look forward to meeting you</span></div></div>
+        <div class="information-item"><div class="information-icon"><i class="fa-regular fa-clock"></i></div><div><h4>Working Hours</h4><p>Monday – Saturday</p><span>Business hours: 9:00 AM – 9:00 PM</span></div></div>
+      </div>
+      <div class="contact-social">
+        <h4>Follow Our Journey</h4>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-wrapper reveal" id="contact-form">
+      <div class="form-heading">
+        <span class="section-label">SEND US A MESSAGE</span>
+        <h2>How can we help you?</h2>
+        <p>Fill in the details below and our team will be happy to assist you.</p>
+      </div>
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fullName">Your Name *</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter your name" autocomplete="name" required>
+            <small class="error-message"></small>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" autocomplete="tel" required>
+            <small class="error-message"></small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" autocomplete="email" required>
+            <small class="error-message"></small>
+          </div>
+          <div class="form-group">
+            <label for="enquiry">Enquiry Type *</label>
+            <select id="enquiry" name="enquiry" required>
+              <option value="">Select an enquiry</option>
+              <option value="Doors">Doors</option><option value="Locks">Locks</option>
+              <option value="Hinges">Hinges</option><option value="Handles">Handles</option>
+              <option value="Bulk Order">Bulk Order</option><option value="Other">Other</option>
+            </select>
+            <small class="error-message"></small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="What is your enquiry about?">
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message *</label>
+          <textarea id="message" name="message" rows="5" placeholder="Tell us a little about what you need..." required></textarea>
+          <small class="error-message"></small>
+        </div>
+        <button type="submit" class="submit-btn"><span>Send Message</span><i class="fa-solid fa-arrow-right"></i></button>
+        <p class="form-note"><i class="fa-solid fa-lock"></i> Your information will only be used to respond to your enquiry.</p>
+        <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+          <i class="fa-solid fa-circle-check"></i>
+          <div><h4>Your message is ready.</h4><p>Your email application should open so you can review and send your enquiry.</p></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="contact-benefits">
+  <div class="benefits-heading reveal">
+    <span class="section-label">THE DOOR STUDIO EXPERIENCE</span>
+    <h2>More than products. <span>Personal attention.</span></h2>
+    <p>Choosing the right details should feel simple, enjoyable and thoughtfully guided. We are here to make the process easier.</p>
+  </div>
+  <div class="benefits-grid">
+    <article class="benefit-card reveal"><div class="benefit-icon"><i class="fa-solid fa-comments"></i></div><h3>Personal Assistance</h3><p>Get guidance in choosing products that complement your space, style and requirements.</p></article>
+    <article class="benefit-card reveal"><div class="benefit-icon"><i class="fa-solid fa-layer-group"></i></div><h3>Product Guidance</h3><p>Explore different styles, finishes and hardware options with our assistance.</p></article>
+    <article class="benefit-card reveal"><div class="benefit-icon"><i class="fa-solid fa-handshake"></i></div><h3>Dedicated Support</h3><p>We are here to help with your questions, product enquiries and project needs.</p></article>
+  </div>
+</section>
+
+<section class="contact-cta">
+  <div class="cta-content reveal">
+    <span class="section-label">YOUR NEXT PROJECT STARTS HERE</span>
+    <h2>Let's make every detail <span>matter.</span></h2>
+    <p>Discover thoughtfully selected products that bring character, quality and elegance to your space.</p>
+    <a href="collections.html" class="cta-button">EXPLORE COLLECTIONS <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER: same markup and content as index.html -->
+<footer>
+  <div><a href="index.html" class="logo">DOOR <span>STUDIO.</span></a><p>Thoughtful hardware. Beautiful spaces.</p></div>
+  <div class="footer-links"><a href="index.html">Home</a><a href="collections.html">Collections</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+  <p>© 2026 Door Studio. All rights reserved.</p>
+</footer>
+
+<!-- Shared inquiry drawer: keeps the index-page header button working on this page too -->
+<div class="overlay" id="overlay" onclick="closeInquiry()"></div>
+<aside class="inquiry-panel" id="inquiryPanel" aria-label="Product enquiry basket">
+  <div class="panel-top"><h3>Your Enquiry</h3><button class="close-panel" onclick="closeInquiry()" aria-label="Close enquiry panel">×</button></div>
+  <div class="inquiry-list" id="inquiryList"><p style="color:#88796b;font-size:13px;margin-top:20px">Your selected products will appear here.</p></div>
+  <button class="panel-action" onclick="sendInquiry()">SEND PRODUCT ENQUIRY →</button>
+</aside>
+
+<script src="contact.js"></script>
+</body>
+</html>
